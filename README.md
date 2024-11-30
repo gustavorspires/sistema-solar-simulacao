@@ -2,6 +2,7 @@
 
 ## Descrição
 Esse projeto busca simular o funcionamento do nosso sistema solar e suas órbitas através do cálculo da interação gravitacional entre cada corpo.
+As trajetórias foram simplificadas de forma a descrever movimentos circulares em função da simplificação dos cálculos referentes.
 
 ## Requisitos
 Para executar esse projeto, será necessário possuir o [Python](https://www.python.org/) e o [pip](https://pip.pypa.io/en/stable/)
