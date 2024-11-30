@@ -9,12 +9,12 @@ Para executar esse projeto, será necessário possuir o [Python](https://www.pyt
 ## Instalação
 - Clone o repositório
 ```
-git clone https://github.com/gustavorspires/trabalho-de-fisica-brocolis.git;
+git clone https://github.com/gustavorspires/trabalho-de-fisica-brocolis.git
 cd trabalho-de-fisica-brocolis
 ```
 - Crie e ative a venv
 ```
-python3 -m venv .venv;
+python3 -m venv .venv
 source .venv/bin/activate
 ```
 - Instale as dependências e execute o programa
