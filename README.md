@@ -10,6 +10,7 @@ Para executar esse projeto, será necessário possuir o [Python](https://www.pyt
 - Clone o repositório
 ```
 $ git clone https://github.com/gustavorspires/trabalho-de-fisica-brocolis.git
+$ cd trabalho-de-fisica-brocolis
 ```
 - Ative a venv
 ```
@@ -18,6 +19,6 @@ $ source .venv/bin/activate
 - Instale as dependências e execute o programa
 ```
 $ pip install -r requirements.txt
-$ python sistemaSolar.py
+$ python3 sistemaSolar.py
 ```
 ## Cálculos
