@@ -50,3 +50,5 @@ $$\vec{r}(t+\Delta t) = 2\vec{r}(t) -\vec{r}(t - \Delta t) + \vec{a}(t)\Delta t^
 
 ### Rapidez 
 A rapidez é calculada como o módulo da variação do vetor posição em um intervalo pequeno:
+
+$$v = \frac{||\vec{r}(t) - \vec{r}(t +\Delta t)||}{\Delta t} $$
