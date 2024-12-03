@@ -29,7 +29,7 @@ python3 sistemaSolar.py
 ### Força gravitacional
 Foi utilizada a Lei Universal da Gravitação de Newton para calcular a força em cada astro:
 
-$$ \vec{F_g} = \frac{Gm_1m_2(\vec{r_2} - \vec{r_1})}{||\vec{r_2} - \vec{r_1}||^2} $$
+$$ \vec{F_g} = \frac{Gm_1m_2(\vec{r_2} - \vec{r_1})}{||\vec{r_2} - \vec{r_1}||^3} $$
 
 $G$: constante gravitacional,  $m_1,r_2$ : massa e posição do astro de origem do vetor de força,  $m_2,r_2$ : massa e posição do astro interagindo com o de origem
 
