@@ -5,6 +5,8 @@ Esse projeto busca simular o funcionamento do nosso sistema solar e suas órbita
 Para isso, foi criado um programa em Python, que realiza uma representação visual da trajetória dos planetas em torno do Sol, utilizando valores constantes proporcionais à massa real de cada corpo.
 As trajetórias foram simplificadas de forma a descrever movimentos circulares em função da simplificação dos cálculos referentes.
 
+![Screenshot da simulação](Image/SistemaSolar.png)
+
 ## Requisitos
 Para executar esse projeto, será necessário possuir o [Python](https://www.python.org/) e o [pip](https://pip.pypa.io/en/stable/)
 ## Instalação
