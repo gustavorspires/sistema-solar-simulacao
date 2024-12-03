@@ -120,15 +120,15 @@ def fGrav(m1, p1, m2, p2):
     """
     Cálculo da força gravitacional
 
-    1. Cria o vetor que parte da posição do planeta 1 (p1) para o planeta 2 (p2)
+    1. Cria o vetor que parte da posição do planeta 2 (p2) para o planeta 1 (p1)
     2. Guarda a distância entre eles
     3. Calcula o módulo da força gravitacional resultante entre os planetas (guarda em 'magnitude')
     4. Normaliza o vetor (guarda em 'dir')
-    5. Calcula e retorna     o vetor força gravitacional (aplica o módulo da força na direção do vetor entre os planetas com 'magnitude * dir')
+    5. Calcula e retorna o vetor força gravitacional (aplica o módulo da força na direção do vetor entre os planetas com 'magnitude * dir')
 
     Parâmetros:
         m1, m2 (float): massa dos planetas a serem analisados na função
-        p1, p2 (tupla): coordenadas da posição dos planetas a serem analisados na função
+        p1, p2 (pygame.Vector2): coordenadas da posição dos planetas a serem analisados na função
 
     Retorna:
         pygame.Vector2: vetor com magnitude da força gravitacional calculada entre dois planetas, apontando da posição de p1 para p2
