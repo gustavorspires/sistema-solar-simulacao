@@ -52,7 +52,7 @@ movimento_speed = 10  # Velocidade de movimento da câmera com teclas WASD
 
 # Configurações da área do cinturão de asteroides
 ASTEROID_BELT_INNER_RADIUS = 300 + (tamanhoSol / 2)  # Milhões de km
-ASTEROID_BELT_OUTER_RADIUS = 600 + (tamanhoSol / 2)  # Milhões de km
+ASTEROID_BELT_OUTER_RADIUS = 500 + (tamanhoSol / 2)  # Milhões de km
 NUM_ASTEROIDS = 250
 
 
