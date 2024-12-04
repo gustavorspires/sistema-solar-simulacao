@@ -12,8 +12,8 @@ Para executar esse projeto, será necessário possuir o [Python](https://www.pyt
 ## Instalação
 - Clone o repositório
 ```
-git clone https://github.com/gustavorspires/trabalho-de-fisica-brocolis.git
-cd trabalho-de-fisica-brocolis
+git clone https://github.com/gustavorspires/sistema-solar-simulacao.git
+cd sistema-solar-simulacao
 ```
 - Crie e ative a venv
 ```
