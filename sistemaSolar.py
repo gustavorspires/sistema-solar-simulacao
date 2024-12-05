@@ -15,16 +15,15 @@ clock = pygame.time.Clock()
 pygame.font.init()
 fonte = pygame.font.SysFont("Arial", 16)
 
-
 # Constantes físicas utilizadas na simulação
-G = 6.67430e-11
-massaSol = 1.989e10
-tamanhoSol = 1392.700
+G = 6.67430e-11  
+massaSol = 1.989e10  
+tamanhoSol = 1392.700  
 distanciaPlanetas = [57.9, 108.2, 149.6, 227.9, 778.5, 1432.0, 2867.0, 4515.0]
 massaPlanetas = [3.28e3, 4.83e4, 5.98e4, 6.40e3, 1.90e7, 5.68e6, 8.67e5, 1.05e6]
 tamanhoPlanetas = [4.879, 12.104, 12.756, 6.798, 142.964, 120.536, 51.118, 49.572]
 coresPlanetas = [
-    (169, 169, 169),
+    (169, 169, 169), 
     (255, 215, 0),
     (0, 191, 255),
     (188, 39, 50),
@@ -44,27 +43,29 @@ nomesPlanetas = [
     "Netuno",
 ]
 
-
 # Parâmetros de simulação
 timeStep = 1e1  # Intervalo de tempo para cada iteração da simulação
 movimento_speed = 10  # Velocidade de movimento da câmera com teclas WASD
-
 
 # Configurações da área do cinturão de asteroides
 ASTEROID_BELT_INNER_RADIUS = 300 + (tamanhoSol / 2)  # Milhões de km
 ASTEROID_BELT_OUTER_RADIUS = 500 + (tamanhoSol / 2)  # Milhões de km
 NUM_ASTEROIDS = 250
 
-
 # Variáveis para controle de zoom e pan
-zoom = 0.1
+zoom = 0.1  # Fator de zoom inicial
 pan_x = 0  # Deslocamento horizontal da câmera
 pan_y = 0  # Deslocamento vertical da câmera
 
-
-# Posição inicial do Sol
-posSol = pygame.Vector2(x // 2, y // 2)
-
+# Inicialização do Sol
+Sol = {
+    "nome": "Sol",
+    "massa": massaSol,
+    "tam": tamanhoSol,
+    "pos": pygame.Vector2(x // 2, y // 2),  # Posiciona o Sol no centro da tela
+    "antPos": pygame.Vector2(x // 2, y // 2),  # Posição anterior (usada para cálculo de velocidade)
+    "vel": pygame.Vector2(0, 0)  # Velocidade inicial (parado)
+}
 
 # Inicialização dos planetas
 # Cria uma lista de planetas com as devidas características necessárias (posição, velocidade etc.) para o desenvolvimento das funções
@@ -72,9 +73,10 @@ planetas = []
 for i in range(len(massaPlanetas)):
     angulo = i * (math.pi / 4)
     distancia = distanciaPlanetas[i] + (tamanhoSol / 2)
-    pos = posSol + pygame.Vector2(
+    pos = Sol["pos"] + pygame.Vector2(
         math.cos(angulo) * distancia, math.sin(angulo) * distancia
     )
+    # Calcula velocidade orbital com base na velocidade circular
     velOrb = math.sqrt(G * massaSol / distancia)
     vel = pygame.Vector2(-math.sin(angulo), math.cos(angulo)) * velOrb
     planetas.append(
@@ -83,12 +85,11 @@ for i in range(len(massaPlanetas)):
             "massa": massaPlanetas[i],
             "tam": tamanhoPlanetas[i],
             "pos": pos,
-            "antPos": pos - vel * timeStep,
+            "antPos": pos - vel * timeStep,  # Posição anterior calculada retroativamente
             "raioOrbital": distancia,
             "vel": vel,
         }
     )
-
 
 # Inicialização dos asteroides
 # Gera uma população de asteroides no cinturão de asteroides com posições e velocidades aleatórias
@@ -100,7 +101,7 @@ for _ in range(NUM_ASTEROIDS):
     angulo = random.uniform(0, 2 * math.pi)
     massa_asteroide = random.uniform(1e-6, 1e-4)
     tamanho_asteroide = random.uniform(0.1, 2)
-    pos = posSol + pygame.Vector2(
+    pos = Sol["pos"] + pygame.Vector2(
         math.cos(angulo) * raio_aleatorio, math.sin(angulo) * raio_aleatorio
     )
     velOrb = math.sqrt(G * massaSol / raio_aleatorio)
@@ -114,7 +115,6 @@ for _ in range(NUM_ASTEROIDS):
             "vel": vel,
         }
     )
-
 
 def fGrav(m1, p1, m2, p2):
     """
@@ -133,7 +133,6 @@ def fGrav(m1, p1, m2, p2):
     Retorna:
         pygame.Vector2: vetor com magnitude da força gravitacional calculada entre dois planetas, apontando da posição de p1 para p2
     """
-
     vecDist = p1 - p2
     dist = vecDist.length()
     if dist == 0:
@@ -141,7 +140,6 @@ def fGrav(m1, p1, m2, p2):
     magnitude = G * (m1 * m2) / dist**2
     dir = vecDist.normalize()
     return magnitude * dir
-
 
 def world_to_screen(pos):
     """
@@ -157,7 +155,6 @@ def world_to_screen(pos):
     screen_y = (pos.y - y // 2) * zoom + y // 2 + pan_y
     return pygame.Vector2(screen_x, screen_y)
 
-
 def calc_velocidade(objeto):
     """
     Calcula a velocidade atual do objeto em km/s
@@ -172,12 +169,10 @@ def calc_velocidade(objeto):
     Retorna:
         float: velocidade do objeto em km/s
     """
-
     pos_atual = pygame.Vector2(objeto["pos"])
     pos_anterior = pygame.Vector2(objeto["antPos"])
     velocidade = (pos_atual - pos_anterior).length() / timeStep
     return velocidade * 1000
-
 
 def update_antPos(objetos):
     """
@@ -188,22 +183,18 @@ def update_antPos(objetos):
     Parâmetros:
         objetos (list): Lista de objetos (planetas ou asteroides) a serem atualizados
     """
-
     for objeto in objetos:
         objeto["antPos"] = objeto["pos"] - objeto["vel"] * timeStep
-
 
 # Loop principal da simulação
 running = True
 while running:
-
-    # Tratamento de eventos do Pygame
+    # Tratamento de eventos do Pygame 
     for event in pygame.event.get():
-
         # Fechamento da janela
         if event.type == pygame.QUIT:
             running = False
-
+        
         # Tratamento de zoom com a roda do mouse
         elif event.type == pygame.MOUSEWHEEL:
             if event.y > 0:
@@ -227,11 +218,11 @@ while running:
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP and timeStep < 1e2:
                 timeStep *= 1.2
-                update_antPos(planetas)
+                update_antPos([Sol] + planetas)
                 update_antPos(asteroides)
             elif event.key == pygame.K_DOWN and timeStep > 0.1:
                 timeStep /= 1.2
-                update_antPos(planetas)
+                update_antPos([Sol] + planetas)
                 update_antPos(asteroides)
 
     # Controle de movimento da câmera com teclas WASD
@@ -245,14 +236,13 @@ while running:
     if keys[pygame.K_d]:
         pan_x -= movimento_speed
 
-    # Simulação de física para planetas e asteroides
-    all_objects = planetas + asteroides
+    # Simulação de física para Sol, planetas e asteroides
+    all_objects = [Sol] + planetas + asteroides
 
     # Cálculo das forças gravitacionais e atualização de posições
     for i, objeto in enumerate(all_objects):
-
-        # Força gravitacional do Sol
-        fTotal = fGrav(massaSol, posSol, objeto["massa"], objeto["pos"])
+        # Força gravitacional total
+        fTotal = pygame.Vector2(0, 0)
 
         # Forças gravitacionais entre todos os objetos
         for j, objeto2 in enumerate(all_objects):
@@ -261,8 +251,7 @@ while running:
                     objeto2["massa"],
                     objeto2["pos"],
                     objeto["massa"],
-                    objeto["pos"],
-                    # Isso faz com que alguns asteróides sejam estilingados por júpiter
+                    objeto["pos"]
                 )
 
         # Cálculo de aceleração e atualização de posição
@@ -279,19 +268,21 @@ while running:
     info_to_display = None
 
     # Desenha o Sol
-    sol_pos = world_to_screen(posSol)
+    sol_pos = world_to_screen(Sol["pos"])
     raio_sol = max(2, int((tamanhoSol / 2) * zoom))
     pygame.draw.circle(tela, (255, 255, 0), (int(sol_pos.x), int(sol_pos.y)), raio_sol)
 
     # Verifica se o mouse está sobre o Sol para exibir informações
     mouse_pos = pygame.mouse.get_pos()
     if (sol_pos - pygame.Vector2(mouse_pos)).length() < raio_sol:
+        vel_atual = calc_velocidade(Sol)
         info_to_display = {
             "pos": (int(sol_pos.x) + raio_sol + 5, int(sol_pos.y) - 30),
             "text": [
                 "Sol",
                 f"Massa: {massaSol*1e20:.2e} kg",
                 f"Diâmetro: {tamanhoSol:.1f} mil km",
+                f"Velocidade: {vel_atual:.2f} km/s",
             ],
         }
 
