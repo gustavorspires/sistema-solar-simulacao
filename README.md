@@ -3,7 +3,7 @@
 ## Descrição
 Esse projeto busca simular o funcionamento de um sistema solar inspirado no nosso e suas órbitas através do cálculo da interação gravitacional entre cada corpo.
 Para isso, foi criado um programa em Python, que realiza uma representação visual da trajetória dos planetas em torno do Sol, utilizando valores constantes proporcionais à massa real de cada corpo.
-As trajetórias foram simplificadas de forma a descrever movimentos circulares em função da simplificação dos cálculos referentes.
+As trajetórias foram simplificadas de forma a descrever movimentos circulares,em um único plano de movimento, em função da simplificação dos cálculos referentes.
 
 ![Screenshot da simulação](Image/SistemaSolar.png)
 
@@ -67,3 +67,4 @@ Fernando Valentim Torres - 15452340 - fernandovt@usp.br
 ## Referências
 
 (1) Bernardes, E. de S. (2024). Gravitação. 7600105 - Física Básica I. Universidade de São Paulo, São Carlos.
+(2) Verlet, Loup (1967). "Computer "Experiments" on Classical Fluids. I. Thermodynamical Properties of Lennard−Jones Molecules"
