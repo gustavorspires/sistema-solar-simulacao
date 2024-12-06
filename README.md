@@ -68,4 +68,4 @@ Fernando Valentim Torres - 15452340 - fernandovt@usp.br
 
 (1) Bernardes, E. de S. (2024). Gravitação. 7600105 - Física Básica I. Universidade de São Paulo, São Carlos.
 (2) Verlet, Loup (1967). "Computer "Experiments" on Classical Fluids. I. Thermodynamical Properties of Lennard−Jones Molecules"
-(3) Williams, D. R. "Planetary Fact Sheet - Metric". National Aeronautics and Space Administration (NASA). Disponível em [https://nssdc.gsfc.nasa.gov/planetary/factsheet/].
+(3) Williams, D. R. "Planetary Fact Sheet - Metric". National Aeronautics and Space Administration (NASA). Disponível em (https://nssdc.gsfc.nasa.gov/planetary/factsheet/).
