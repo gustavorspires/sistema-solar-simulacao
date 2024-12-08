@@ -38,7 +38,7 @@ Foram somadas os vetores de forças ativos em um astro, para calcular a força r
 ### Aceleração
 Utilizando a Segunda Lei de Newton é possível calcular a aceleração de um astro:
 
-$$ \vec{a} = \frac{\vec{F_r}}{m} $$
+$$\vec{F_r} = m\vec{a} \therefore  \vec{a} = \frac{\vec{F_r}}{m} $$
 
 ### Velocidade Orbital 
 A velocidade inicial é calculada a partir a equação da força centrípeta, considerando o movimento como uma órbita circular centrada no Sol, o sentido é perpendicular com o vetor das posições entre o astro e o Sol, no sentido horário:
@@ -48,10 +48,13 @@ $$ \frac{mv^2}{r} = \frac{GMm}{r^2} \therefore v = \sqrt{\frac{GM}{r}} $$
 ### Posição
 Foi utilizado o Método de Integração de Verlet para o cálculo da posição:
 
+$$\vec{r}(t+\Delta t) = \vec{r}(t) + \vec{v}(t)\Delta t + \frac{\vec{a}(t)\Delta t^2}{2}$$
+$$\vec{r}(t-\Delta t) = \vec{r}(t) - \vec{v}(t)\Delta t + \frac{\vec{a}(t)\Delta t^2}{2}$$
+$$\therefore$$
 $$\vec{r}(t+\Delta t) = 2\vec{r}(t) -\vec{r}(t - \Delta t) + \vec{a}(t)\Delta t^2 $$
 
 ### Rapidez 
-A rapidez é calculada como o módulo da variação do vetor posição em um intervalo pequeno:
+A rapidez é calculada como o módulo da variação do vetor posição no menor intervalo de tempo sendo utilizado na simulação:
 
 $$v = \frac{||\vec{r}(t) - \vec{r}(t +\Delta t)||}{\Delta t} $$
 
